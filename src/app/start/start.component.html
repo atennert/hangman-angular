@@ -1,3 +1,13 @@
-<h1>{{title}}</h1>
-<p>Hangman game for German words.</p>
-<app-image></app-image>
+<div class="content">
+  <header class="header">
+    <h1>{{title}}</h1>
+    <p>Hangman game for German words.</p>
+  </header>
+  <app-image class="image"></app-image>
+  <nav class="nav">
+    <ul class="menu">
+      <li class="menu__entry"><a routerLink="/game" class="menu__link">Start game</a></li>
+      <li class="menu__entry"><a routerLink="/about" class="menu__link">About this site & privacy policy</a></li>
+    </ul>
+  </nav>
+</div>
