@@ -1,1 +1,89 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --base-color: #fff;
+  --background-color: #244;
+  --button-hover-color: #366;
+  --button-checked-color: #488;
+  --outline-color: #9f9;
+  --overlay-background-color: rgba(255, 255, 255, .4);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  text-align: center;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--base-color);
+  font-size: 16px;
+  font-family: sans-serif;
+  padding: .5em;
+}
+
+h1, h2, h3, h4 {
+  margin: .5em 0;
+}
+h1 {
+  font-size: 2.3em;
+}
+h2 {
+  font-size: 1.7em;
+}
+h3 {
+  font-size: 1.4em;
+}
+h4 {
+  font-size: 1.15em;
+}
+
+a {
+  color: var(--base-color);
+  font-weight: 500;
+}
+a:not(.menu__link):hover,
+a:not(.menu__link):focus {
+  font-weight: 600;
+}
+
+a:focus {
+  outline: 0;
+  box-shadow: 0 0 3px 2px var(--outline-color);
+}
+
+.menu__link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: .2em .3em;
+  border: solid .3vmin var(--base-color);
+  border-radius: 1vmin;
+  font-size: 1.3em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.menu__link:focus,
+.menu__link:hover {
+  background-color: var(--button-hover-color);
+  text-decoration: underline;
+}
+
+p,
+ul {
+  margin: 0 0 .8em;
+  line-height: 1.4em;
+}
+
+ul {
+  padding: 0 2em;
+  list-style-position: inside;
+}
