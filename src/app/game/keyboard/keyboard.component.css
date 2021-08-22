@@ -30,7 +30,6 @@
 }
 
 .key[aria-selected="true"] {
-  pointer-events: none;
   background-color: var(--button-checked-color);
 }
 

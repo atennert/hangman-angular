@@ -19,4 +19,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleKeyEvent(key: string): void {
+    console.log(key)
+  }
 }

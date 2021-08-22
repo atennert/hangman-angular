@@ -10,5 +10,5 @@
     <app-image class="image"></app-image>
     <p class="word">{{currentWord}}</p>
   </div>
-  <app-keyboard class="keyboard"></app-keyboard>
+  <app-keyboard class="keyboard" (keyEvent)="handleKeyEvent($event)"></app-keyboard>
 </div>
