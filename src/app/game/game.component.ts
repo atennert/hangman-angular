@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppSettings} from "../AppSettings";
 
 @Component({
   selector: 'app-game',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  title = AppSettings.TITLE;
+  currentErrors = 0;
+  maxErrors = 10;
+  currentWord = '__________________ ___________________';
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -1,1 +1,14 @@
-<p>game works!</p>
+<div class="game__container">
+  <header>
+    <h1 class="title">{{title}}</h1>
+    <p>Errors: {{currentErrors}} of {{maxErrors}}</p>
+    <nav>
+      <a routerLink="/start" class="menu__link">Back to Menu</a>
+    </nav>
+  </header>
+  <div class="game__output">
+    <app-image class="image"></app-image>
+    <p class="word">{{currentWord}}</p>
+  </div>
+  <app-keyboard class="keyboard"></app-keyboard>
+</div>

@@ -9,6 +9,7 @@ import {ResultComponent} from './result/result.component';
 import {AboutComponent} from './about/about.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { ImageComponent } from './image/image.component';
+import { KeyboardComponent } from './game/keyboard/keyboard.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ImageComponent } from './image/image.component';
     ResultComponent,
     AboutComponent,
     PageNotFoundComponent,
-    ImageComponent
+    ImageComponent,
+    KeyboardComponent
   ],
   imports: [
     BrowserModule,
