@@ -6,6 +6,7 @@
   --button-checked-color: #488;
   --outline-color: #9f9;
   --overlay-background-color: rgba(255, 255, 255, .4);
+  --body-padding: .5em;
 }
 
 *,
@@ -26,7 +27,7 @@ body {
   color: var(--base-color);
   font-size: 16px;
   font-family: sans-serif;
-  padding: .5em;
+  padding: var(--body-padding);
 }
 
 h1, h2, h3, h4 {
