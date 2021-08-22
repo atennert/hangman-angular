@@ -10,7 +10,7 @@ export class GameComponent implements OnInit {
 
   title = AppSettings.TITLE;
   currentErrors = 0;
-  maxErrors = 10;
+  maxErrors = AppSettings.MAX_ERRORS;
   currentWord = '__________________ ___________________';
 
   constructor() {
