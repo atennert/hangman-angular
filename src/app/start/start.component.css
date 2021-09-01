@@ -1,4 +1,4 @@
-.content {
+:host {
   display: grid;
   grid-template: auto auto / 2fr 1fr;
   justify-items: center;
@@ -37,7 +37,7 @@ nav {
 }
 
 @media screen and (orientation: portrait) {
-  .content {
+  :host {
     grid-template: auto auto auto / 1fr;
   }
 

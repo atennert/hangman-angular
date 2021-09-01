@@ -1,4 +1,4 @@
-.game__container {
+:host {
   display: grid;
   grid-template: repeat(3, auto) / 1fr;
   justify-items: center;
@@ -36,7 +36,7 @@
 }
 
 @media screen and (orientation: landscape) {
-  .game__container {
+  :host {
     grid-template: 50% 50% / 1fr 2fr;
     grid-gap: .3em;
   }
@@ -56,7 +56,7 @@
 }
 
 @media screen and (orientation: landscape) and (min-height: 22em) {
-  .game__container {
+  :host {
     grid-template: auto auto / 1fr 2fr;
   }
 
