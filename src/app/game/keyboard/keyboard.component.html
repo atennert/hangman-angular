@@ -1,8 +1,4 @@
-<div class="keyboard__container" aria-label="keyboard" role="grid">
-  <span *ngFor="let letter of alphabet" class="key__cell" role="gridcell">
-    <button type="button" [attr.data-key]="letter" class="key" aria-selected="false"
-            tabindex="{{letter === 'a' ? '0' : '-1'}}" (click)="handleKeyEvent(letter)">
-      {{letter}}
-    </button>
-  </span>
-</div>
+<span *ngFor="let letter of alphabet" class="key__cell" role="gridcell">
+  <button type="button" [attr.data-key]="letter" class="key" aria-selected="false" #key
+          tabindex="{{letter === 'a' ? '0' : '-1'}}" (click)="handleKeyEvent(letter)">{{letter}}</button>
+</span>

@@ -1,5 +1,4 @@
-import { EventEmitter } from '@angular/core';
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostBinding, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 
 @Component({
   selector: 'app-keyboard',
@@ -8,7 +7,16 @@ import {Component, OnInit, Output} from '@angular/core';
 })
 export class KeyboardComponent implements OnInit {
 
+  @HostBinding('attr.aria-label')
+  private ariaLabel = 'keyboard';
+
+  @HostBinding('attr.role')
+  private role = 'grid';
+
   @Output() keyEvent = new EventEmitter<string>();
+
+  @ViewChildren('key')
+  private keyList: QueryList<ElementRef> = new QueryList();
 
   alphabet = [...'abcdefghijklmnopqrstuvwxyzäöüß'];
 
@@ -57,7 +65,7 @@ export class KeyboardComponent implements OnInit {
    */
   handleKeyEvent(letter: string): void {
     const keyIndex = this.alphabet.indexOf(letter);
-    const key = KeyboardComponent.getKey(keyIndex);
+    const key = this.getKey(keyIndex);
     key.setAttribute('aria-selected', 'true');
     this.keyFocusIndex = keyIndex;
     console.trace('Keyboard.handleKeyEvent: ' + letter);
@@ -86,7 +94,7 @@ export class KeyboardComponent implements OnInit {
    */
   private focusKey(index: number): void {
     this.keyFocusIndex = index;
-    const key = KeyboardComponent.getKey(index);
+    const key = this.getKey(index);
     key.focus()
   }
 
@@ -94,8 +102,7 @@ export class KeyboardComponent implements OnInit {
    * Get the key (Button) for the given index.
    * @param index key index
    */
-  private static getKey(index: number): HTMLButtonElement {
-    const keyboardContainer = document.querySelector('.keyboard__container')!;
-    return keyboardContainer.childNodes.item(index).firstChild as HTMLButtonElement;
+  private getKey(index: number): HTMLButtonElement {
+    return this.keyList.get(index)?.nativeElement as HTMLButtonElement;
   }
 }
