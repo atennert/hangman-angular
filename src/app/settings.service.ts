@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 export enum WordProvider {
-  SIMPLE
+  SIMPLE,
+  KRAUT_IPSUM
 }
 
 /**
@@ -12,9 +13,15 @@ export enum WordProvider {
 })
 export class SettingsService {
 
+  private wordProvider = WordProvider.SIMPLE;
+
   constructor() { }
 
+  public setWordProvider(wordProvider: WordProvider) {
+    this.wordProvider = wordProvider;
+  }
+
   public getWordProvider(): WordProvider {
-    return WordProvider.SIMPLE;
+    return this.wordProvider;
   }
 }
