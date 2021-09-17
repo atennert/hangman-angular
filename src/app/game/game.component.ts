@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppSettings} from "../AppSettings";
+import {CONFIG} from "../app.config";
 
 @Component({
   selector: 'app-game',
@@ -8,9 +8,9 @@ import {AppSettings} from "../AppSettings";
 })
 export class GameComponent implements OnInit {
 
-  title = AppSettings.TITLE;
+  title = CONFIG.TITLE;
   currentErrors = 0;
-  maxErrors = AppSettings.MAX_ERRORS;
+  maxErrors = CONFIG.MAX_ERRORS;
   currentWord = '__________________ ___________________';
 
   constructor() {

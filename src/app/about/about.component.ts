@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AppSettings} from "../AppSettings";
+import {CONFIG} from "../app.config";
 
 @Component({
   selector: 'app-about',
@@ -8,7 +8,7 @@ import {AppSettings} from "../AppSettings";
 })
 export class AboutComponent implements OnInit {
 
-  title = AppSettings.TITLE;
+  title = CONFIG.TITLE;
 
   constructor() { }
 
