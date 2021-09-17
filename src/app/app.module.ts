@@ -10,6 +10,7 @@ import {AboutComponent} from './about/about.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ImageComponent} from './image/image.component';
 import {KeyboardComponent} from './game/keyboard/keyboard.component';
+import {SettingsService} from "./settings.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import {KeyboardComponent} from './game/keyboard/keyboard.component';
       {path: '**', component: PageNotFoundComponent}
     ])
   ],
-  providers: [],
+  providers: [SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
