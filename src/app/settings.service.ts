@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {BehaviorSubject, Subject} from "rxjs";
 
 export enum WordProvider {
   SIMPLE,
@@ -13,24 +14,20 @@ export enum WordProvider {
 })
 export class SettingsService {
 
-  private wordProvider = WordProvider.SIMPLE;
+  private readonly _wordProvider: BehaviorSubject<WordProvider>;
 
   constructor() {
-    this.loadSettings()
+    // @ts-ignore
+    this._wordProvider = new BehaviorSubject(SettingsService.loadSetting<WordProvider>('wordProvider', WordProvider.SIMPLE, v => WordProvider[WordProvider[parseInt(v, 10)]]));
   }
 
   public setWordProvider(wordProvider: WordProvider) {
-    this.wordProvider = wordProvider;
+    this._wordProvider.next(wordProvider);
     localStorage.setItem('wordProvider', `${wordProvider}`);
   }
 
-  public getWordProvider(): WordProvider {
-    return this.wordProvider;
-  }
-
-  private loadSettings() {
-    // @ts-ignore
-    this.wordProvider = SettingsService.loadSetting<WordProvider>('wordProvider', WordProvider.SIMPLE, v => WordProvider[WordProvider[parseInt(v, 10)]]);
+  public get wordProvider$(): Subject<WordProvider> {
+    return this._wordProvider;
   }
 
   private static loadSetting<T>(key: string, defaultValue: T, converter: (a: string) => T): T {

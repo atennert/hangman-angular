@@ -15,19 +15,27 @@ describe('SettingsService', () => {
   });
 
   it('should return the simple word provider setting as default', () => {
-    console.log(service.getWordProvider());
-    expect(service.getWordProvider()).toEqual(WordProvider.SIMPLE);
+    let currentValue: WordProvider | undefined;
+    service.wordProvider$.subscribe(value => currentValue = value);
+
+    expect(currentValue).toEqual(WordProvider.SIMPLE);
   });
 
   it('should allow to change the word provider setting', () => {
+    let currentValue: WordProvider | undefined;
+    service.wordProvider$.subscribe(value => currentValue = value);
+
     service.setWordProvider(WordProvider.KRAUT_IPSUM);
-    expect(service.getWordProvider()).toEqual(WordProvider.KRAUT_IPSUM);
+
+    expect(currentValue).toEqual(WordProvider.KRAUT_IPSUM);
   });
 
   it('should persist between sessions', () => {
+    let currentValue: WordProvider | undefined;
+    new SettingsService().setWordProvider(WordProvider.KRAUT_IPSUM);
     let service = new SettingsService();
-    service.setWordProvider(WordProvider.KRAUT_IPSUM);
-    service = new SettingsService()
-    expect(service.getWordProvider()).toEqual(WordProvider.KRAUT_IPSUM);
+    service.wordProvider$.subscribe(value => currentValue = value);
+
+    expect(currentValue).toEqual(WordProvider.KRAUT_IPSUM);
   });
 });
