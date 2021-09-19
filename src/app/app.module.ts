@@ -11,6 +11,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ImageComponent} from './image/image.component';
 import {KeyboardComponent} from './game/keyboard/keyboard.component';
 import {SettingsService} from "./settings.service";
+import {WordService} from "./word.service";
+import {InternalListWordService} from "./internal-list-word.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import {SettingsService} from "./settings.service";
       {path: '**', component: PageNotFoundComponent}
     ])
   ],
-  providers: [SettingsService],
+  providers: [
+    SettingsService,
+    {provide: WordService, useClass: InternalListWordService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
