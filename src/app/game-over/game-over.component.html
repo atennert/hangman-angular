@@ -4,7 +4,7 @@
   <p>Wanted word: {{gameService.word$.getValue()}}</p>
   <p>Wrong letters: {{gameService.fails$.getValue()}}</p>
 </div>
-<app-image class="image"></app-image>
+<app-image class="image" [showParts]="gameService.fails$"></app-image>
 <nav class="nav">
   <ul class="menu">
     <li class="menu__entry"><a routerLink="/game" class="menu__link">Try again</a></li>

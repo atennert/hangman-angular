@@ -6,7 +6,7 @@
   </nav>
 </header>
 <div class="game__output">
-  <app-image class="image"></app-image>
+  <app-image class="image" [showParts]="gameService.fails$"></app-image>
   <p class="word">{{gameService.word$ | async}}</p>
 </div>
 <app-keyboard class="keyboard" (keyEvent)="handleKeyEvent($event)"></app-keyboard>
