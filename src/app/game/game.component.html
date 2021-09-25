@@ -1,6 +1,6 @@
 <header>
   <h1 class="title">{{title}}</h1>
-  <p>Errors: {{currentErrors}} of {{maxErrors}}</p>
+  <p>Errors: {{this.gameService.fails$ | async}} of {{maxErrors}}</p>
   <nav>
     <a routerLink="/start" class="menu__link">Back to Menu</a>
   </nav>

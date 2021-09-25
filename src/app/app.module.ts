@@ -12,6 +12,7 @@ import {ImageComponent} from './image/image.component';
 import {KeyboardComponent} from './game/keyboard/keyboard.component';
 import {WordService} from "./word.service";
 import {InternalListWordService} from "./internal-list-word.service";
+import {GameOverComponent} from './game-over/game-over.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {InternalListWordService} from "./internal-list-word.service";
     AboutComponent,
     PageNotFoundComponent,
     ImageComponent,
-    KeyboardComponent
+    KeyboardComponent,
+    GameOverComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import {InternalListWordService} from "./internal-list-word.service";
       {path: 'game', component: GameComponent},
       {path: 'result', component: ResultComponent},
       {path: 'about', component: AboutComponent},
+      {path: 'over', component: GameOverComponent},
       {path: '', redirectTo: '/start', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ])
