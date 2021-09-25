@@ -56,4 +56,8 @@ describe('GameService', () => {
     service.guessLetter('x');
     expect(service.fails$.getValue()).toEqual(1);
   });
+
+  it('should provide the current word', () => {
+    expect(service.targetWord).toEqual('abc');
+  });
 });

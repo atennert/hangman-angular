@@ -43,6 +43,10 @@ export class GameService {
     return this._fails;
   }
 
+  public get targetWord(): string {
+    return this._targetWord;
+  }
+
   public guessLetter(letter: string) {
     if (this._usedKeys.includes(letter.toLowerCase())) {
       return;

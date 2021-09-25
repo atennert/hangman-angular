@@ -1,7 +1,7 @@
 <h1 class="title">{{title}}</h1>
 <div class="result">
   <p>You {{gameState}}</p>
-  <p>Wanted word: {{gameService.word$.getValue()}}</p>
+  <p>Wanted word: {{gameService.targetWord}}</p>
   <p>Wrong letters: {{gameService.fails$.getValue()}}</p>
 </div>
 <app-image class="image" [showParts]="gameService.fails$"></app-image>
