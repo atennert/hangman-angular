@@ -17,7 +17,7 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gameService.initialize()
+    this.gameService.initialize(this.maxErrors);
   }
 
   handleKeyEvent(key: string): void {
