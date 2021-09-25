@@ -7,6 +7,6 @@
 </header>
 <div class="game__output">
   <app-image class="image"></app-image>
-  <p class="word">{{currentWord}}</p>
+  <p class="word">{{gameService.word$ | async}}</p>
 </div>
 <app-keyboard class="keyboard" (keyEvent)="handleKeyEvent($event)"></app-keyboard>

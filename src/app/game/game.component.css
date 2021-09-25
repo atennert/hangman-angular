@@ -68,12 +68,15 @@
     max-width: 45vh;
   }
   .word {
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
 }
 
 @media screen and (orientation: landscape) and (min-height: 35em) {
   .image {
     max-width: 60vh;
+  }
+  .word {
+    font-size: 1.6em;
   }
 }

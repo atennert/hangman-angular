@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CONFIG} from "../app.config";
+import {GameService} from "./game.service";
 
 @Component({
   selector: 'app-game',
@@ -11,15 +12,15 @@ export class GameComponent implements OnInit {
   title = CONFIG.TITLE;
   currentErrors = 0;
   maxErrors = CONFIG.MAX_ERRORS;
-  currentWord = '__________________ ___________________';
 
-  constructor() {
+  constructor(public gameService: GameService) {
   }
 
   ngOnInit(): void {
+    this.gameService.initialize()
   }
 
   handleKeyEvent(key: string): void {
-    console.log(key)
+    this.gameService.guessLetter(key);
   }
 }

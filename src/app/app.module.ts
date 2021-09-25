@@ -10,7 +10,6 @@ import {AboutComponent} from './about/about.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ImageComponent} from './image/image.component';
 import {KeyboardComponent} from './game/keyboard/keyboard.component';
-import {SettingsService} from "./settings.service";
 import {WordService} from "./word.service";
 import {InternalListWordService} from "./internal-list-word.service";
 
@@ -37,7 +36,6 @@ import {InternalListWordService} from "./internal-list-word.service";
     ])
   ],
   providers: [
-    SettingsService,
     {provide: WordService, useClass: InternalListWordService }
   ],
   bootstrap: [AppComponent]

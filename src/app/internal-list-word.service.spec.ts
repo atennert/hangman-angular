@@ -6,7 +6,9 @@ describe('InternalListWordService', () => {
   let service: InternalListWordService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [InternalListWordService]
+    });
     service = TestBed.inject(InternalListWordService);
   });
 
