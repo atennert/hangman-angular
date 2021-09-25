@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CONFIG} from "../app.config";
+import {GameService} from "../game/game.service";
 
 @Component({
   selector: 'app-game-over',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameOverComponent implements OnInit {
 
-  constructor() { }
+  title = CONFIG.TITLE;
+  gameState = '';
 
-  ngOnInit(): void {
+  constructor(public gameService: GameService) {
   }
 
+  ngOnInit(): void {
+    this.gameState = this.gameService.success$.getValue() ? 'won' : 'lost';
+  }
 }

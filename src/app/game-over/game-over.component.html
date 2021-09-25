@@ -1,1 +1,13 @@
-<p>game-over works!</p>
+<h1 class="title">{{title}}</h1>
+<div class="result">
+  <p>You {{gameState}}</p>
+  <p>Wanted word: {{gameService.word$.getValue()}}</p>
+  <p>Wrong letters: {{gameService.fails$.getValue()}}</p>
+</div>
+<app-image class="image"></app-image>
+<nav class="nav">
+  <ul class="menu">
+    <li class="menu__entry"><a routerLink="/game" class="menu__link">Try again</a></li>
+    <li class="menu__entry"><a routerLink="/start" class="menu__link">Back to menu</a></li>
+  </ul>
+</nav>

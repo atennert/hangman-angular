@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GameOverComponent } from './game-over.component';
+import {WordService} from "../word.service";
 
 describe('GameOverComponent', () => {
   let component: GameOverComponent;
@@ -8,7 +9,8 @@ describe('GameOverComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameOverComponent ]
+      declarations: [ GameOverComponent ],
+      providers: [{provide: WordService, useValue: {getWord: () => "abc"}}]
     })
     .compileComponents();
   });
