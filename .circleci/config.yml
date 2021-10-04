@@ -64,7 +64,7 @@ jobs:
         # Build files for deployment
         - run:
             name: Build the project
-            command: ng build
+            command: npm run build
 
         # Deploy files
         - run:
