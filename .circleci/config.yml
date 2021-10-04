@@ -7,41 +7,84 @@ jobs:
         docker:
             - image: circleci/node:current-browsers
         steps:
-            # Checkout the code from the branch into the working_directory
-            - checkout
-            # Log the current branch
-            - run:
-                name: Show current branch
-                command: echo ${CIRCLE_BRANCH}
-            # Restore local dependencies from cache
-            - restore_cache:
-                keys:
-                - v1-dependencies-{{ checksum "package-lock.json" }}
-                - v1-dependencies-
-            # Install project dependencies
-            - run:
-                name: Install local dependencies
-                command: npm install
-            # Cache local dependencies if they don't exist
-            - save_cache:
-                key: v1-dependencies-{{ checksum "package-lock.json" }}
-                paths:
-                    - node_modules
-            # Lint the source code
-            #- run:
-            #    name: Linting
-            #    command: npm run lint
-            # Test the source code
-            - run:
-                name: Testing
-                command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-            # End to End test
-            #- run:
-            #    name: End to End Test
-            #    command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+          # Checkout the code from the branch into the working_directory
+          - checkout
+          # Log the current branch
+          - run:
+              name: Show current branch
+              command: echo ${CIRCLE_BRANCH}
+          # Restore local dependencies from cache
+          - restore_cache:
+              keys:
+              - v1-dependencies-{{ checksum "package-lock.json" }}
+              - v1-dependencies-
+          # Install project dependencies
+          - run:
+              name: Install local dependencies
+              command: npm install
+          # Cache local dependencies if they don't exist
+          - save_cache:
+              key: v1-dependencies-{{ checksum "package-lock.json" }}
+              paths:
+                  - node_modules
+          # Lint the source code
+          #- run:
+          #    name: Linting
+          #    command: npm run lint
+          # Test the source code
+          - run:
+              name: Testing
+              command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+          # End to End test
+          #- run:
+          #    name: End to End Test
+          #    command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+
+    deploy:
+      working_directory: ~/project-name
+      docker:
+        - image: circleci/node:current-browsers
+      steps:
+        - add_ssh_keys:
+            fingerprints:
+              - "e4:f2:f2:26:af:f4:54:32:a7:8b:80:40:0b:dd:c4:00"
+
+        # Checkout the code from the branch into the working_directory
+        - checkout
+        # Restore local dependencies from cache
+        - restore_cache:
+            keys:
+              - v1-dependencies-{{ checksum "package-lock.json" }}
+              - v1-dependencies-
+        # Install project dependencies
+        - run:
+            name: Install local dependencies
+            command: npm install
+
+        # Build files for deployment
+        - run:
+            name: Build the project
+            command: ng build
+
+        # Deploy files
+        - run:
+            name: Delete old files
+            command: ssh -i ~/.ssh/id_rsa_e4f2f226aff45432a78b80400bddc400 ${WEB_USER}@${WEB_SERVER} rm ${FOLDER}/*
+
+        - run:
+            name: Deploy new files
+            command: scp -i ~/.ssh/id_rsa_e4f2f226aff45432a78b80400bddc400 dist/hangman-angular/* ${WEB_USER}@${WEB_SERVER}:${FOLDER}
 
 workflows:
   version: 2
   test:
     jobs:
       - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
+
