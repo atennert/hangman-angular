@@ -66,6 +66,10 @@ jobs:
             name: Build the project
             command: npm run build
 
+        - run:
+            name: set host identity
+            command: echo "${WEB_SERVER} ssh-ed25519 ${HOST_KEY}" > ~/.ssh/known_hosts
+
         # Deploy files
         - run:
             name: Delete old files
