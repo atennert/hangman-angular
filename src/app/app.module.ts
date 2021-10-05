@@ -13,6 +13,8 @@ import {KeyboardComponent} from './game/keyboard/keyboard.component';
 import {WordService} from "./word.service";
 import {InternalListWordService} from "./internal-list-word.service";
 import {GameOverComponent} from './game-over/game-over.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,13 @@ import {GameOverComponent} from './game-over/game-over.component';
       {path: 'over', component: GameOverComponent},
       {path: '', redirectTo: '/start', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
-    ])
+    ]),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     {provide: WordService, useClass: InternalListWordService }
