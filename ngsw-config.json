@@ -26,24 +26,5 @@
         ]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "all",
-      "urls": [
-        "/icon.svg",
-        "/index.html",
-        "/manifest.webmanifest",
-        "/*.css",
-        "/*.js",
-        "/assets/**"
-      ],
-      "cacheConfig": {
-        "strategy": "freshness",
-        "timeout": "0u",
-        "maxSize": 50,
-        "maxAge": "30d"
-      }
-    }
   ]
 }
