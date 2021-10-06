@@ -25,12 +25,13 @@
             "assets": [
               "src/icon.svg",
               "src/manifest.webmanifest",
-              "src/assets"
+              "src/assets",
+              "src/sw.js"
             ],
-            "styles": [
-              "src/styles.css"
+            "styles": [],
+            "scripts": [
+
             ],
-            "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
