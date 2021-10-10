@@ -66,6 +66,24 @@ jobs:
             name: Build the project
             command: npm run build
 
+        # cleanup unwanted files
+        - run: rm dist/hangman-angular/worker-basic.min.js
+        - run: rm dist/hangman-angular/ngsw-worker.js
+        - run: rm dist/hangman-angular/safety-worker.js
+        - run: rm dist/hangman-angular/ngsw.json
+
+        # prepare files
+        - run: mv dist/hangman-angular/main*.js dist/hangman-angular/main.js
+        - run: mv dist/hangman-angular/polyfills*.js dist/hangman-angular/polyfills.js
+        - run: mv dist/hangman-angular/runtime*.js dist/hangman-angular/runtime.js
+        - run: sed -i -e 's/main\.[0-9a-z]*\.js/main\.js/' dist/hangman-angular/index.html
+        - run: sed -i -e 's/polyfills\.[0-9a-z]*\.js/polyfills\.js/' dist/hangman-angular/index.html
+        - run: sed -i -e 's/runtime\.[0-9a-z]*\.js/runtime\.js/' dist/hangman-angular/index.html
+
+        # update service worker version
+        - run: sed -i -e 's/%version%/$CIRCLE_SHA1/' dist/hangman-angular/sw.js
+
+        # register host key
         - run:
             name: set host identity
             command: echo "${WEB_SERVER} ssh-ed25519 ${HOST_KEY}" > ~/.ssh/known_hosts
