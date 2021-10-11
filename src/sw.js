@@ -2,17 +2,18 @@
   "use strict";
   const CACHE_NAME = "hangman-atennert-%version%";
   const ALL_CACHES = [CACHE_NAME];
+  const files = [
+    "index.html",
+    "main.js",
+    "polyfills.js",
+    "runtime.js",
+    "icon.svg",
+    "manifest.webmanifest"];
   self.addEventListener("install", event => {
     event.waitUntil(
       caches.open(CACHE_NAME)
         .then(cache => {
-          return cache.addAll([
-            "index.html",
-            "main.js",
-            "polyfills.js",
-            "runtime.js",
-            "icon.svg",
-            "manifest.webmanifest"]);
+          return cache.addAll(files);
         }));
   });
 
@@ -32,13 +33,15 @@
   self.addEventListener("fetch", event => {
     const requestUrl = new URL(event.request.url);
 
-    requestUrl.origin !== location.origin || "/" !== requestUrl.pathname
-      ? event.respondWith(
+    if (requestUrl.origin !== location.origin || "/" !== requestUrl.pathname || files.includes(requestUrl.pathname)) {
+      event.respondWith(
         caches.match(event.request)
-          .then(response => response || fetch(event.request)))
-      : event.respondWith(
+          .then(response => response || fetch(event.request)));
+    } else {
+      event.respondWith(
         caches.match("index.html")
-          .then(response => response || fetch("index.html")))
+          .then(response => response || fetch("index.html")));
+    }
   });
 }());
 
