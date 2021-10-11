@@ -8,6 +8,7 @@
     "polyfills.js",
     "runtime.js",
     "icon.svg",
+    "styles.css",
     "manifest.webmanifest"];
   self.addEventListener("install", event => {
     event.waitUntil(
