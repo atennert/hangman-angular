@@ -81,7 +81,7 @@ jobs:
         - run: sed -i -e 's/main\.[0-9a-z]*\.js/main\.js/' dist/hangman-angular/index.html
         - run: sed -i -e 's/polyfills\.[0-9a-z]*\.js/polyfills\.js/' dist/hangman-angular/index.html
         - run: sed -i -e 's/runtime\.[0-9a-z]*\.js/runtime\.js/' dist/hangman-angular/index.html
-        - run: sed -i -e 's/styles\.[0-9a-z]*\.css/styles\.css/' dist/hangman-angular/index.html
+        - run: sed -i -e 's/styles\.[0-9a-z]*\.css/styles\.css/g' dist/hangman-angular/index.html
 
         # update service worker version
         - run: sed -i -e "s/%version%/$CIRCLE_SHA1/" dist/hangman-angular/sw.js
