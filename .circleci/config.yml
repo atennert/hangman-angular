@@ -81,7 +81,7 @@ jobs:
         - run: sed -i -e 's/runtime\.[0-9a-z]*\.js/runtime\.js/' dist/hangman-angular/index.html
 
         # update service worker version
-        - run: sed -i -e 's/%version%/$CIRCLE_SHA1/' dist/hangman-angular/sw.js
+        - run: sed -i -e 's/%version%/${CIRCLE_SHA1}/' dist/hangman-angular/sw.js
 
         # register host key
         - run:
