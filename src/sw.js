@@ -8,8 +8,9 @@
     "polyfills.js",
     "runtime.js",
     "icon.svg",
+    "icon.png",
     "styles.css",
-    "manifest.webmanifest"];
+    "manifest.json"];
   self.addEventListener("install", event => {
     event.waitUntil(
       caches.open(CACHE_NAME)
