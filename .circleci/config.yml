@@ -88,9 +88,9 @@ jobs:
         - run: sed -i -e 's/runtime\.[0-9a-z]*\.js/runtime\.js/' dist/hangman-angular/index.html
         - run: sed -i -e 's/styles\.[0-9a-z]*\.css/styles\.css/g' dist/hangman-angular/index.html
 
-        - run:
-            name: create PNG
-            command: convert dist/hangman-angular/icon.svg -background none -resize 512x512 dist/hangman-angular/icon.png
+        # create special PNGs
+        - run: convert dist/hangman-angular/icon.svg -background none -resize 512x512 dist/hangman-angular/icon512.png
+        - run: convert dist/hangman-angular/icon.svg -background none -resize 192x192 dist/hangman-angular/icon192.png
 
         # update service worker version
         - run: sed -i -e "s/%version%/$CIRCLE_SHA1/" dist/hangman-angular/sw.js

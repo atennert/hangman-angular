@@ -8,7 +8,8 @@
     "polyfills.js",
     "runtime.js",
     "icon.svg",
-    "icon.png",
+    "icon512.png",
+    "icon192.png",
     "styles.css",
     "manifest.json"];
   self.addEventListener("install", event => {
