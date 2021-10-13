@@ -90,7 +90,7 @@ jobs:
 
         # create special PNGs
         - run: convert dist/hangman-angular/icon.svg -background none -resize 512x512 dist/hangman-angular/icon512.png
-        - run: convert dist/hangman-angular/icon.svg -background none -resize 192x192 dist/hangman-angular/icon192.png
+        - run: convert dist/hangman-angular/icon.svg -background "#224444" -resize 192x192 dist/hangman-angular/icon192.png
 
         # update service worker version
         - run: sed -i -e "s/%version%/$CIRCLE_SHA1/" dist/hangman-angular/sw.js
