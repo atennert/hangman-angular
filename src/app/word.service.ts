@@ -5,5 +5,5 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export abstract class WordService {
-  abstract getWord(): string;
+  abstract getWord(): Promise<string>;
 }

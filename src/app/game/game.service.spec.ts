@@ -1,4 +1,4 @@
-import {TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import {GameService} from './game.service';
 import {WordService} from "../word.service";
@@ -6,15 +6,15 @@ import {WordService} from "../word.service";
 describe('GameService', () => {
   let service: GameService;
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
-        {provide: WordService, useValue: {getWord: () => "abc"}}
+        {provide: WordService, useValue: {getWord: () => Promise.resolve("abc")}}
       ]
     });
     service = TestBed.inject(GameService);
     service.initialize(3);
-  });
+  }));
 
   it('should be initialized', () => {
     expect(service.word$.getValue()).toEqual('___');

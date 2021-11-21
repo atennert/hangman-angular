@@ -16,8 +16,8 @@ export class InternalListWordService extends WordService {
     'Sauerkraut'
   ];
 
-  getWord(): string {
-    return this._wordList[Math.floor(Math.random() * this._wordList.length)];
+  getWord(): Promise<string> {
+    return Promise.resolve(this._wordList[Math.floor(Math.random() * this._wordList.length)]);
   }
 
   get wordList(): string[] {

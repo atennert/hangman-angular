@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {GameComponent} from './game.component';
 import {WordService} from "../word.service";
@@ -8,14 +8,14 @@ describe('GameComponent', () => {
   let component: GameComponent;
   let fixture: ComponentFixture<GameComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [GameComponent],
       imports: [RouterTestingModule],
-      providers: [{provide: WordService, useValue: {getWord: () => "abc"}}]
+      providers: [{provide: WordService, useValue: {getWord: () => Promise.resolve("abc")}}]
     })
       .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GameComponent);

@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import { InternalListWordService } from './internal-list-word.service';
 
@@ -12,9 +12,11 @@ describe('InternalListWordService', () => {
     service = TestBed.inject(InternalListWordService);
   });
 
-  it('should give a word from the internal list', () => {
-    const word = service.getWord();
-    console.log(word);
-    expect(service.wordList).toContain(word);
-  });
+  it('should give a word from the internal list', waitForAsync(() => {
+    service.getWord()
+      .then(word => {
+        console.log(word);
+        expect(service.wordList).toContain(word);
+      });
+  }));
 });
