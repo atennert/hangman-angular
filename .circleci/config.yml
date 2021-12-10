@@ -92,6 +92,9 @@ jobs:
         - run: rsvg-convert -w 512 -h 512 -b none dist/hangman-angular/icon.svg > dist/hangman-angular/icon512.png
         - run: rsvg-convert -w 192 -h 192 -b "#244" dist/hangman-angular/icon.svg > dist/hangman-angular/icon192.png
 
+        # htaccess for handling error 404
+        - run: echo "ErrorDocument 404 /index.html" > dist/hangman-angular/.htaccess
+
         # update service worker version
         - run: sed -i -e "s/%version%/$CIRCLE_SHA1/" dist/hangman-angular/sw.js
 
