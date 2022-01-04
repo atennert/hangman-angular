@@ -34,7 +34,7 @@ jobs:
           # Test the source code
           - run:
               name: Testing
-              command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+              command: npx nx test
           # End to End test
           #- run:
           #    name: End to End Test
@@ -69,34 +69,34 @@ jobs:
         # Build files for deployment
         - run:
             name: Build the project
-            command: npm run build
+            command: npx nx run hangman-angular:build
 
         # cleanup unwanted files
-        - run: rm dist/hangman-angular/worker-basic.min.js
-        - run: rm dist/hangman-angular/ngsw-worker.js
-        - run: rm dist/hangman-angular/safety-worker.js
-        - run: rm dist/hangman-angular/ngsw.json
+        - run: rm dist/apps/hangman-angular/worker-basic.min.js
+        - run: rm dist/apps/hangman-angular/ngsw-worker.js
+        - run: rm dist/apps/hangman-angular/safety-worker.js
+        - run: rm dist/apps/hangman-angular/ngsw.json
 
         # prepare files
-        - run: mv dist/hangman-angular/main*.js dist/hangman-angular/main.js
-        - run: mv dist/hangman-angular/polyfills*.js dist/hangman-angular/polyfills.js
-        - run: mv dist/hangman-angular/runtime*.js dist/hangman-angular/runtime.js
-        - run: mv dist/hangman-angular/styles*.css dist/hangman-angular/styles.css
+        - run: mv dist/apps/hangman-angular/main*.js dist/hangman-angular/main.js
+        - run: mv dist/apps/hangman-angular/polyfills*.js dist/hangman-angular/polyfills.js
+        - run: mv dist/apps/hangman-angular/runtime*.js dist/hangman-angular/runtime.js
+        - run: mv dist/apps/hangman-angular/styles*.css dist/hangman-angular/styles.css
 
-        - run: sed -i -e 's/main\.[0-9a-z]*\.js/main\.js/' dist/hangman-angular/index.html
-        - run: sed -i -e 's/polyfills\.[0-9a-z]*\.js/polyfills\.js/' dist/hangman-angular/index.html
-        - run: sed -i -e 's/runtime\.[0-9a-z]*\.js/runtime\.js/' dist/hangman-angular/index.html
-        - run: sed -i -e 's/styles\.[0-9a-z]*\.css/styles\.css/g' dist/hangman-angular/index.html
+        - run: sed -i -e 's/main\.[0-9a-z]*\.js/main\.js/' dist/apps/hangman-angular/index.html
+        - run: sed -i -e 's/polyfills\.[0-9a-z]*\.js/polyfills\.js/' dist/apps/hangman-angular/index.html
+        - run: sed -i -e 's/runtime\.[0-9a-z]*\.js/runtime\.js/' dist/apps/hangman-angular/index.html
+        - run: sed -i -e 's/styles\.[0-9a-z]*\.css/styles\.css/g' dist/apps/hangman-angular/index.html
 
         # create special PNGs
-        - run: rsvg-convert -w 512 -h 512 -b none dist/hangman-angular/icon.svg > dist/hangman-angular/icon512.png
-        - run: rsvg-convert -w 192 -h 192 -b "#244" dist/hangman-angular/icon.svg > dist/hangman-angular/icon192.png
+        - run: rsvg-convert -w 512 -h 512 -b none dist/apps/hangman-angular/icon.svg > dist/apps/hangman-angular/icon512.png
+        - run: rsvg-convert -w 192 -h 192 -b "#244" dist/apps/hangman-angular/icon.svg > dist/apps/hangman-angular/icon192.png
 
         # htaccess for handling error 404
-        - run: echo "ErrorDocument 404 /index.html" > dist/hangman-angular/.htaccess
+        - run: echo "ErrorDocument 404 /index.html" > dist/apps/hangman-angular/.htaccess
 
         # update service worker version
-        - run: sed -i -e "s/%version%/$CIRCLE_SHA1/" dist/hangman-angular/sw.js
+        - run: sed -i -e "s/%version%/$CIRCLE_SHA1/" dist/apps/hangman-angular/sw.js
 
         # register host key
         - run:
@@ -110,7 +110,7 @@ jobs:
 
         - run:
             name: Deploy new files
-            command: scp -i ~/.ssh/id_rsa_e4f2f226aff45432a78b80400bddc400 dist/hangman-angular/* ${WEB_USER}@${WEB_SERVER}:${FOLDER}
+            command: scp -i ~/.ssh/id_rsa_e4f2f226aff45432a78b80400bddc400 dist/apps/hangman-angular/* ${WEB_USER}@${WEB_SERVER}:${FOLDER}
 
 workflows:
   version: 2
