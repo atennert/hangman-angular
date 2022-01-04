@@ -78,10 +78,10 @@ jobs:
         - run: rm dist/apps/hangman-angular/ngsw.json
 
         # prepare files
-        - run: mv dist/apps/hangman-angular/main*.js dist/hangman-angular/main.js
-        - run: mv dist/apps/hangman-angular/polyfills*.js dist/hangman-angular/polyfills.js
-        - run: mv dist/apps/hangman-angular/runtime*.js dist/hangman-angular/runtime.js
-        - run: mv dist/apps/hangman-angular/styles*.css dist/hangman-angular/styles.css
+        - run: mv dist/apps/hangman-angular/main*.js dist/apps/hangman-angular/main.js
+        - run: mv dist/apps/hangman-angular/polyfills*.js dist/apps/hangman-angular/polyfills.js
+        - run: mv dist/apps/hangman-angular/runtime*.js dist/apps/hangman-angular/runtime.js
+        - run: mv dist/apps/hangman-angular/styles*.css dist/apps/hangman-angular/styles.css
 
         - run: sed -i -e 's/main\.[0-9a-z]*\.js/main\.js/' dist/apps/hangman-angular/index.html
         - run: sed -i -e 's/polyfills\.[0-9a-z]*\.js/polyfills\.js/' dist/apps/hangman-angular/index.html
