@@ -1,7 +1,7 @@
 {
   "npmScope": "hangman-angular",
   "affected": {
-    "defaultBase": "undefined"
+    "defaultBase": "main"
   },
   "implicitDependencies": {
     "angular.json": "*",
