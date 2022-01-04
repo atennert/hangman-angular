@@ -68,7 +68,6 @@ export class KeyboardComponent implements OnInit {
     const key = this.getKey(keyIndex);
     key.setAttribute('aria-selected', 'true');
     this.keyFocusIndex = keyIndex;
-    console.trace('Keyboard.handleKeyEvent: ' + letter);
     this.keyEvent.emit(letter);
   }
 

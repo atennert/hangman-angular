@@ -38,12 +38,12 @@ describe('KeyboardComponent', () => {
   it(`should send a key press`, () => {
     const keyIndex = Math.floor(Math.random() * component.alphabet.length);
     const key = component.alphabet[keyIndex];
-    spyOn(component.keyEvent, 'emit');
+    const spyComponent = jest.spyOn(component.keyEvent, 'emit');
     console.log(`checking for ${key}`);
 
     const button = fixture.debugElement.query(By.css(`.key[data-key="${key}"]`));
     button.triggerEventHandler('click', null);
 
-    expect(component.keyEvent.emit).toHaveBeenCalledOnceWith(key);
+    expect(spyComponent).toBeCalledWith(key);
   });
 });
