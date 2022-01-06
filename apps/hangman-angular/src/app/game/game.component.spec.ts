@@ -3,6 +3,8 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {GameComponent} from './game.component';
 import {WordService} from "../word.service";
 import {RouterTestingModule} from "@angular/router/testing";
+import {ImageComponent} from "../image/image.component";
+import {KeyboardComponent} from "./keyboard/keyboard.component";
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -10,7 +12,7 @@ describe('GameComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [GameComponent],
+      declarations: [GameComponent, ImageComponent, KeyboardComponent],
       imports: [RouterTestingModule],
       providers: [{provide: WordService, useValue: {getWord: () => Promise.resolve("abc")}}]
     })
