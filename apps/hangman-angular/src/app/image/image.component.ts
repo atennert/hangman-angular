@@ -12,9 +12,6 @@ export class ImageComponent implements OnInit {
 
   @Input() showParts: BehaviorSubject<number> | undefined;
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     if (this.showParts != undefined) {
       const parts = document.querySelectorAll('.hangman__part');

@@ -17,8 +17,11 @@ export class SettingsService {
   private readonly _wordProvider: BehaviorSubject<WordProvider>;
 
   constructor() {
-    // @ts-ignore TS7015
-    this._wordProvider = new BehaviorSubject(SettingsService.loadSetting<WordProvider>('wordProvider', WordProvider.SIMPLE, v => WordProvider[v]));
+    this._wordProvider = new BehaviorSubject(
+      SettingsService.loadSetting<WordProvider>(
+        'wordProvider',
+        WordProvider.SIMPLE,
+        (v: number) => WordProvider[v] as unknown as WordProvider));
   }
 
   public setWordProvider(wordProvider: WordProvider) {
@@ -30,10 +33,10 @@ export class SettingsService {
     return this._wordProvider;
   }
 
-  private static loadSetting<T>(key: string, defaultValue: T, converter: (a: string) => T): T {
+  private static loadSetting<T>(key: string, defaultValue: T, converter: (a: number) => T): T {
     const storageValue = localStorage.getItem(key);
     return storageValue == null
       ? defaultValue
-      : converter(storageValue);
+      : converter(parseInt(storageValue));
   }
 }

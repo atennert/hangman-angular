@@ -22,7 +22,7 @@ export class GameComponent implements OnInit {
 
     this.gameService.success$.pipe(
       filter(v => v != undefined))
-      .subscribe(_ => this.router.navigate(['over']));
+      .subscribe(() => this.router.navigate(['over']));
   }
 
   handleKeyEvent(key: string): void {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CONFIG} from "../app.config";
 
 @Component({
@@ -6,14 +6,8 @@ import {CONFIG} from "../app.config";
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.css']
 })
-export class StartComponent implements OnInit {
+export class StartComponent {
 
   title = CONFIG.TITLE;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
 }

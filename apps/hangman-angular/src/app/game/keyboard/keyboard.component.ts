@@ -52,9 +52,6 @@ export class KeyboardComponent implements OnInit {
     }
   };
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     window.addEventListener('keyup', this.handleWindowKeyEvent.bind(this));
   }

@@ -33,7 +33,7 @@ describe('SettingsService', () => {
   it('should persist between sessions', () => {
     let currentValue: WordProvider | undefined;
     new SettingsService().setWordProvider(WordProvider.KRAUT_IPSUM);
-    let service = new SettingsService();
+    const service = new SettingsService();
     service.wordProvider$.subscribe(value => currentValue = value);
 
     expect(currentValue).toEqual(WordProvider.KRAUT_IPSUM);

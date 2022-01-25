@@ -66,6 +66,13 @@
           },
           "defaultConfiguration": "production"
         },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/hangman-angular/**/*.{js,ts}"]
+          }
+        },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
