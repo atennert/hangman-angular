@@ -34,7 +34,7 @@ jobs:
           # Test the source code
           - run:
               name: Testing
-              command: npx nx test
+              command: npx nx test --runInBand
           # End to End test
           #- run:
           #    name: End to End Test
