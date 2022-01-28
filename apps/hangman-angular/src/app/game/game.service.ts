@@ -19,14 +19,15 @@ export class GameService {
   }
 
   public initialize(maxFails: number) {
-    this.wordService.getWord().then(word => {
-      this._targetWord = word;
-      this._currentWord.next(
-        Array.from(this._targetWord)
-          .map(l => l.replace(/[a-zA-ZäöüÄÖÜß]/, '_'))
-          .join('')
-      );
-    });
+    this.wordService.getWord()
+      .subscribe(word => {
+        this._targetWord = word;
+        this._currentWord.next(
+          Array.from(this._targetWord)
+            .map(l => l.replace(/[a-zA-ZäöüÄÖÜß]/, '_'))
+            .join('')
+        );
+      });
     this.success$.next(undefined);
     this._maxFails = maxFails;
     this._fails.next(0);

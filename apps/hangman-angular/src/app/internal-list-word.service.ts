@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {WordService} from "./word.service";
+import {Observable, of} from "rxjs";
 
 @Injectable()
 export class InternalListWordService extends WordService {
@@ -16,8 +17,8 @@ export class InternalListWordService extends WordService {
     'Sauerkraut'
   ];
 
-  getWord(): Promise<string> {
-    return Promise.resolve(this._wordList[Math.floor(Math.random() * this._wordList.length)]);
+  getWord(): Observable<string> {
+    return of(this._wordList[Math.floor(Math.random() * this._wordList.length)]);
   }
 
   get wordList(): string[] {

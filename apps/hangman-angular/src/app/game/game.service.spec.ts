@@ -2,6 +2,7 @@ import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import {GameService} from './game.service';
 import {WordService} from "../word.service";
+import {of} from "rxjs";
 
 describe('GameService', () => {
   let service: GameService;
@@ -9,7 +10,7 @@ describe('GameService', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
-        {provide: WordService, useValue: {getWord: () => Promise.resolve("abc")}}
+        {provide: WordService, useValue: {getWord: () => of("abc")}}
       ]
     });
     service = TestBed.inject(GameService);

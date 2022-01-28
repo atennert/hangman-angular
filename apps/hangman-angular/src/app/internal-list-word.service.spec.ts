@@ -14,7 +14,7 @@ describe('InternalListWordService', () => {
 
   it('should give a word from the internal list', waitForAsync(() => {
     service.getWord()
-      .then(word => {
+      .subscribe(word => {
         console.log(word);
         expect(service.wordList).toContain(word);
       });

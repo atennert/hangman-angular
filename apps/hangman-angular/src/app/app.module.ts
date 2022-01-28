@@ -14,6 +14,7 @@ import {GameOverComponent} from './game-over/game-over.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {InternalListWordService} from "./internal-list-word.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {InternalListWordService} from "./internal-list-word.service";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: 'start', component: StartComponent},
       {path: 'game', component: GameComponent},

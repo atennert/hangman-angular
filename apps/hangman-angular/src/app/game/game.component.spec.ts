@@ -5,6 +5,7 @@ import {WordService} from "../word.service";
 import {RouterTestingModule} from "@angular/router/testing";
 import {ImageComponent} from "../image/image.component";
 import {KeyboardComponent} from "./keyboard/keyboard.component";
+import {of} from "rxjs";
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -14,7 +15,7 @@ describe('GameComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [GameComponent, ImageComponent, KeyboardComponent],
       imports: [RouterTestingModule],
-      providers: [{provide: WordService, useValue: {getWord: () => Promise.resolve("abc")}}]
+      providers: [{provide: WordService, useValue: {getWord: () => of("abc")}}]
     })
       .compileComponents();
   });
