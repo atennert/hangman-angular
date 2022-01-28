@@ -21,7 +21,7 @@ export class SettingsService {
       SettingsService.loadSetting<WordProvider>(
         'wordProvider',
         WordProvider.SIMPLE,
-        (v: number) => WordProvider[v] as unknown as WordProvider));
+        (v: string) => WordProvider[v as keyof typeof WordProvider]));
   }
 
   public setWordProvider(wordProvider: WordProvider) {
@@ -33,10 +33,10 @@ export class SettingsService {
     return this._wordProvider;
   }
 
-  private static loadSetting<T>(key: string, defaultValue: T, converter: (a: number) => T): T {
+  private static loadSetting<T>(key: string, defaultValue: T, converter: (a: string) => T): T {
     const storageValue = localStorage.getItem(key);
     return storageValue == null
       ? defaultValue
-      : converter(parseInt(storageValue));
+      : converter(storageValue);
   }
 }
